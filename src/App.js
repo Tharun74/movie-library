@@ -62,15 +62,13 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>Movie Library</h1>
-        {!selectedMovie && (
-          <input
-            type="text"
-            placeholder="Search movies by title..."
-            className="search-bar"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        )}
+        <input
+          type="text"
+          placeholder="Search movies by title..."
+          className={`search-bar ${selectedMovie ? 'hidden' : ''}`}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
       </header>
 
       <main className="content">
