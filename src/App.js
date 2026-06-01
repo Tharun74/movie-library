@@ -86,22 +86,33 @@ function App() {
             <h2>{selectedMovie.title}</h2>
             {selectedMovie.tagline && <p className="tagline">"{selectedMovie.tagline}"</p>}
             
-            <div className="fields">
-              <p><strong>Original Title:</strong> {selectedMovie.original_title}</p>
-              <p><strong>Release Date:</strong> {getLocalizedDate(selectedMovie.release_date)}</p>
-              <p><strong>Runtime:</strong> {selectedMovie.runtime} minutes</p>
-              <p>
-                <strong>Status:</strong>{' '}
+            <div className="fields-grid">
+              <div className="field-label">Original Title</div>
+              <div className="field-value">{selectedMovie.original_title}</div>
+
+              <div className="field-label">Release Date</div>
+              <div className="field-value">{getLocalizedDate(selectedMovie.release_date)}</div>
+
+              <div className="field-label">Runtime</div>
+              <div className="field-value">{selectedMovie.runtime} minutes</div>
+
+              <div className="field-label">Status</div>
+              <div className="field-value">
                 <span className={`status-badge status-${(selectedMovie.status || '').toLowerCase()}`}>
                   {selectedMovie.status}
                 </span>
-              </p>
-              <p>
-                <strong>Vote Average:</strong>{' '}
-                <span className="rating-badge">{selectedMovie.vote_average} / 10</span>
-              </p>
-              <p><strong>Vote Count:</strong> {selectedMovie.vote_count}</p>
-              <p><strong>Overview:</strong> {selectedMovie.overview}</p>
+              </div>
+
+              <div className="field-label">Vote Average</div>
+              <div className="field-value">
+                <span className="rating-badge">★ {selectedMovie.vote_average} / 10</span>
+              </div>
+
+              <div className="field-label">Vote Count</div>
+              <div className="field-value">{selectedMovie.vote_count}</div>
+
+              <div className="field-label align-top">Overview</div>
+              <div className="field-value overview-text">{selectedMovie.overview}</div>
             </div>
           </div>
         ) : (
@@ -113,9 +124,13 @@ function App() {
                   className="movie-card" 
                   onClick={() => viewMovieDetail(movie.id)}
                 >
-                  <h3>{movie.title}</h3>
-                  <p className="tagline">{movie.tagline || 'No tagline'}</p>
-                  <p className="rating">Rating: {movie.vote_average} / 10</p>
+                  <div className="card-content">
+                    <h3>{movie.title}</h3>
+                    <p className="tagline">{movie.tagline || 'No tagline'}</p>
+                  </div>
+                  <div className="card-footer">
+                    <p className="rating">★ {movie.vote_average} / 10</p>
+                  </div>
                 </div>
               ))}
             </div>
