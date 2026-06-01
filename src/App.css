@@ -169,3 +169,33 @@ body {
   margin-top: 80px;
   color: #a1a1aa;
 }
+
+/* Badges & Status */
+.status-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.status-released {
+  background-color: #065f46;
+  color: #a7f3d0;
+}
+
+.status-rumored {
+  background-color: #78350f;
+  color: #fde68a;
+}
+
+.rating-badge {
+  display: inline-block;
+  background-color: #27272a;
+  border: 1px solid #3f3f46;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #f59e0b;
+  font-size: 0.9rem;
+}

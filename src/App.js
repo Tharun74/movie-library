@@ -58,14 +58,6 @@ function App() {
     movie.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  if (loading) {
-    return <div className="loading">Loading...</div>;
-  }
-
-  if (error) {
-    return <div className="error">Error: {error}</div>;
-  }
-
   return (
     <div className="app">
       <header className="app-header">
@@ -82,7 +74,11 @@ function App() {
       </header>
 
       <main className="content">
-        {selectedMovie ? (
+        {loading ? (
+          <div className="loading">Loading...</div>
+        ) : error ? (
+          <div className="error">Error: {error}</div>
+        ) : selectedMovie ? (
           <div className="detail-view">
             <button className="back-btn" onClick={() => setSelectedMovie(null)}>
               &larr; Back to Movies List
@@ -94,8 +90,16 @@ function App() {
               <p><strong>Original Title:</strong> {selectedMovie.original_title}</p>
               <p><strong>Release Date:</strong> {getLocalizedDate(selectedMovie.release_date)}</p>
               <p><strong>Runtime:</strong> {selectedMovie.runtime} minutes</p>
-              <p><strong>Status:</strong> {selectedMovie.status}</p>
-              <p><strong>Vote Average:</strong> {selectedMovie.vote_average} / 10</p>
+              <p>
+                <strong>Status:</strong>{' '}
+                <span className={`status-badge status-${(selectedMovie.status || '').toLowerCase()}`}>
+                  {selectedMovie.status}
+                </span>
+              </p>
+              <p>
+                <strong>Vote Average:</strong>{' '}
+                <span className="rating-badge">{selectedMovie.vote_average} / 10</span>
+              </p>
               <p><strong>Vote Count:</strong> {selectedMovie.vote_count}</p>
               <p><strong>Overview:</strong> {selectedMovie.overview}</p>
             </div>
